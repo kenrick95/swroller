@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <title>Star Wars Roller</title>
+  <style>
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#main {
+  flex: 0 0 50%;
+  height: 50%;
+  overflow: hidden;
+  perspective: 100px;
+  background: black;
+  position: relative;
+}
+#text {
+  transform: rotateX(90deg) scale(2) translateY(0);
+  animation: 15s linear 0s 1 normal forwards running roll;
+  color: yellow;
+  text-align: justify;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+@keyframes roll {
+  from { 
+    transform: rotateX(90deg) scale(2) translateY(0);
+  }
+  to {
+    transform: rotateX(90deg) scale(2) translateY(-500px);
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div id="text" class="text-new-position">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </div>
+  </div>
+</body>
+</html>
