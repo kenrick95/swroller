@@ -13,6 +13,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+#input {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+}
+#play {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #main {
   flex: 0 0 50%;
@@ -23,29 +36,51 @@ body {
   position: relative;
 }
 #text {
-  transform: rotateX(90deg) scale(2) translateY(0);
-  animation: 15s linear 0s 1 normal forwards running roll;
+  transform: rotateX(90deg) scaleY(0.5) translateY(0);
   color: yellow;
   text-align: justify;
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
+  transform-origin: top;
+  padding: 0 5em;
+  box-sizing: border-box;
+}
+.text-animate {
+  animation: 15s linear 0s 1 normal forwards running roll;
 }
 
 @keyframes roll {
   from { 
-    transform: rotateX(90deg) scale(2) translateY(0);
+    transform: rotateX(90deg) scaleY(0.5) translateY(0);
   }
   to {
-    transform: rotateX(90deg) scale(2) translateY(-500px);
+    transform: rotateX(90deg) scaleY(0.5) translateY(-500px);
   }
 }
   </style>
 </head>
 <body>
+  <textarea id="input" placeholder="Input text here..."></textarea>
+  <button id="play">Replay</button>
   <div id="main">
-    <div id="text" class="text-new-position">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </div>
+    <div id="text" class="text-animate">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus diam ut lacus hendrerit vehicula. Maecenas mattis lacus eu urna mollis tempor. Phasellus ex purus, blandit mattis euismod at, vestibulum quis nisi. Sed vel lacus lectus. Curabitur a dolor nec sem interdum tincidunt. Integer sed mauris fermentum, fermentum turpis sit amet, lacinia ante. Mauris mattis urna nibh, sed tristique sem pulvinar et. Donec et velit vehicula, consectetur lorem vel, vestibulum eros. Vivamus iaculis, mi quis hendrerit laoreet, purus magna scelerisque est, id consequat sem mauris a nibh. Donec risus nulla, iaculis in pulvinar id, venenatis eget lectus. Curabitur egestas, tellus ut dignissim dapibus, purus ante blandit elit, sed luctus dolor dui at risus. Nunc mattis, est ut pulvinar aliquam, lorem nisl ullamcorper risus, a sodales sem sapien in magna. Sed turpis lacus, feugiat eget facilisis a, semper id turpis. Nunc tortor mauris, efficitur nec sem a, tempus dictum ex. Phasellus fringilla est tincidunt tortor dapibus, et convallis sem convallis. Suspendisse potenti. </div>
   </div>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  var targetText = document.getElementById('text');
+  document.getElementById('input').addEventListener('input', function (event) {
+    var value = event.target.value;
+    targetText.textContent = value;
+  })
+  document.getElementById('play').addEventListener('click', function (event) {
+    targetText.classList.remove('text-animate');
+    targetText.offsetWidth; // force reflow
+    targetText.classList.add('text-animate');
+  })
+});
+  </script>
 </body>
 </html>
